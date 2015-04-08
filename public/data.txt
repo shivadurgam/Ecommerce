@@ -1,0 +1,6 @@
+1. rails g scaffold Product title:string description:text image_url:string price:decimal
+2. change in the migration file -> precision: 8, scale: 2
+3. rake db:migrate
+4. in views/products/form    
+		  <%= f.text_area :description, :rows => 6 %>
+5. 
