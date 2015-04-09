@@ -6,28 +6,30 @@
 5. added seed data
 6. added depot.css file
 7. changed the products/index.html.erb file
-							<div id="product_list">
-					<h1>Listing products</h1>
-					<table>
-					<% @products.each do |product| %>
-					<tr class="<%= cycle('list_line_odd', 'list_line_even') %>">
-					<td>
-					        <%= image_tag(product.image_url, :class => 'list_image') %>
-					</td>
-					<td class="list_description"> <dl>
-					<dt><%= product.title %></dt>
-					<dd><%= truncate(strip_tags(product.description),
-					:length => 80) %></dd>
-					</dl> </td>
-					<td class="list_actions">
-					<%= link_to 'Show', product %><br/>
-					<%= link_to 'Edit', edit_product_path(product) %><br/> <%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %>
-					￼</td> </tr>
-					<% end %>
-					  </table>
-					</div>
-					<br />
+8. <%= image_tag(product.image_url, :class => 'list_image') %>
+9. <%= truncate(strip_tags(product.description), :length => 80) %>
+10. Validations added
+11. rails generate controller store index
+12. root path has been set to 'store#index'
+13. sprintf("$%0,02f", product.price)
+14. number_to_currency(product.price)
+15.rails g scaffold cart
+16. added a private method current_cart in Application Controller to find a cart by id, 	if  not found create one and store the cart id in session.
+17.rails g scaffold line_item product_id:integer cart_id:integer
+18. rake db:migrate
+19. defining associatons: Cart has_many line_items;  LineItem belongs_to product, cart; Product has_many line_items
+20. add method add_product in cart.rb, change the line items controller
+21. '&times;'.html_safe  ;   &times; is a close(x) symbol
+22. rails g migration combine_items_in_cart
+23. added little code in the newly created migration file
+24. Handling an exception:
+	  rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
+	  def record_not_found
+	    redirect_to store_path
+	  end
 
-					<%= link_to 'New product', new_product_path %>
+25. @cart.total_price
+	def total_price 
+  		line_items.to_a.sum { |item| item.total_price }
+	end
 
-8. 
