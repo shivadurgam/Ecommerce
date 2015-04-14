@@ -1,1 +1,5 @@
-$('#cart').html(<%= render current_user.carts %>) 
+$("#cart").html("<%= escape_javascript(render @cart) %>")
+$("#current_item").css("color", "black");
+
+
+

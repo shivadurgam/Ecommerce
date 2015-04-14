@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   get 'admin' => 'admin#index'
 
-  devise_for :users
+  devise_for :users,
+             :controllers => {:registrations => "my_devise/registrations"}
 
   get 'store/index'
 

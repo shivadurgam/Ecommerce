@@ -16,8 +16,13 @@
 //= require_tree .
 
 $(function() {
-	$("#add-to-cart").live("click", function() {
+	$("#add_to_cart td a").live("click", function() {
 		$.getScript(this.href);
 		return false;
 	});
+
+	//$("#product_search").keyup(function() {
+	//	$.get($("#product_search").attr("action"), $("#product_search").serialize(), null, "script");
+	//	return false;
+	//});
 });

@@ -1,6 +1,6 @@
 <% unless cart.line_items.empty? %>
 	<div class="cart_title">
-		<%= current_user.email %> Your Cart
+		 <%= current_user.email.titleize %><br /> Your Cart
 	</div> 
 	
 	<table>
@@ -17,5 +17,4 @@
 <% else %>
 
 <h3>Your Cart is empty.</h3>
-
 <% end %>
