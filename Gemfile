@@ -6,6 +6,10 @@ gem 'rails', '4.2.0'
 
 gem 'devise'
 
+gem 'pg'
+
+gem 'heroku'
+
 gem 'will_paginate'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
