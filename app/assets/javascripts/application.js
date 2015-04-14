@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(function() {
+	$("#add-to-cart").live("click", function() {
+		$.getScript(this.href);
+		return false;
+	});
+});

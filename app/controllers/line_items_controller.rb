@@ -1,4 +1,5 @@
 class LineItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_line_item, only: [:show, :edit, :update, :destroy]
 
   # GET /line_items
@@ -31,7 +32,8 @@ class LineItemsController < ApplicationController
 
     respond_to do |format|
       if @line_item.save
-        format.html { redirect_to @line_item.cart }
+        #format.html { redirect_to @line_item.cart }
+        format.html { redirect_to store_url }
         format.json { render :show, status: :created, location: @line_item }
       else
         format.html { render :new }

@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_cart, only: [:show, :edit, :update]
   rescue_from ActiveRecord::RecordNotFound, :with => :record_not_found
   # GET /carts
@@ -29,7 +30,7 @@ class CartsController < ApplicationController
   # POST /carts
   # POST /carts.json
   def create
-    @cart = Cart.new(cart_params)
+    @cart = current_user.carts.build(cart_params)
 
     respond_to do |format|
       if @cart.save
@@ -63,7 +64,7 @@ class CartsController < ApplicationController
     @cart.destroy
     session[:cart_id] = nil
     respond_to do |format|
-      format.html { redirect_to store_url, notice: 'Your cart is currently empty' }
+      format.html { redirect_to store_url}
       format.json { head :ok }
     end
   end

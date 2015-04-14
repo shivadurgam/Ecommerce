@@ -32,4 +32,16 @@
 	def total_price 
   		line_items.to_a.sum { |item| item.total_price }
 	end
+26. 
+depot> rails generate scaffold order name:string address:text \ email:string pay_type:string
+...
+depot> rails generate migration add_order_id_to_line_item \
+          order_id:integer
+27. rake db:migrate
+28.  <div class="field">
+    <%= f.label :pay_type %><br>
+    <%= f.select :pay_type, Order::PAYMENT_TYPES,
+                  :prompt => 'Select a payment method' %>
+  </div>
+29.     validates :pay_type, :inclusion => PAYMENT_TYPES
 

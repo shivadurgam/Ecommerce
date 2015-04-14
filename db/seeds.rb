@@ -15,6 +15,12 @@
 # Visit http://www.pragmaticprogrammer.com/titles/rails4 for more book information.
 #---
 # encoding: utf-8
+Order.transaction do (1..100).each do |i|
+    Order.create(:name => "Customer #{i}", :address => "#{i} Main Street",
+      :email => "customer-#{i}@example.com", :pay_type => "Check")
+    end
+end
+
 Product.delete_all
 Product.create(:title => 'Web Design for Developers',
   :description => 

@@ -1,12 +1,32 @@
 <% if notice %>
-<p id="notice"><%= notice %></p> <% end %>
-<h1>Your Pragmatic Catalog</h1>
-      <% @products.each do |product| %>
-<div class="entry"><br />
-<%= image_tag(product.image_url) %> <h3><%= product.title %></h3>
-<%= sanitize(product.description) %> <div class="price_line">
-<span class="price"><%= number_to_currency(product.price) %></span> 
-<%= button_to 'Add to Cart', line_items_path(:product_id => product) %>
-</div>
-</div> <br /><hr>
+<p id="notice"><%= notice %></p> 
 <% end %>
+
+<div>
+	<%= form_tag products_path, :method => 'get' do %>  
+	  <p>  
+	    <%= text_field_tag :search, params[:search], :placeholder => "Search Product by Title" %>  
+	    <%= submit_tag "Search", :name => nil %>  
+	  </p>  
+	<% end %> 
+	<%= will_paginate %>
+</div>
+
+
+<h1>Your Pragmatic Catalog</h1>
+<h4 style="color:red"> <%= @search_notice %></h4>
+      
+<% @store.each do |product| %>
+	<div class="entry"><br />
+
+		<%= image_tag(product.image_url) %> 
+		<h3><%= product.title %></h3>
+		<%= sanitize(product.description) %> 
+		<div class="price_line">
+				<span class="price"><%= number_to_currency(product.price) %></span> 
+				<%= button_to 'Add to Cart', line_items_path(:product_id => product), :remote => true, :id => 'add-to-cart' %>
+		</div>
+
+	</div> <br />
+<% end %>
+<%= will_paginate %>
