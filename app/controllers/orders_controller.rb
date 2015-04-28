@@ -40,7 +40,8 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         Notifier.order_received(@order).deliver_now
-        redirect_to store_path , notice: 'Thank for your order.' 
+        redirect_to store_path , notice: 'Thank for your order.'
+        I18n.t('.thanks')
       else
         render 'new'
       end

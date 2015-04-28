@@ -2,9 +2,12 @@ class StoreController < ApplicationController
     helper_method :sort_column, :sort_direction
 
   def index
+    if params[:set_locale]
+      redirect_to sotre_path(:locale => params[:set_locale])
+    else
   	@cart = current_cart
     @store =  Product.all.paginate(:per_page => 10, :page => params[:page])
-    
+    end    
 
   end
 

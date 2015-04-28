@@ -184,3 +184,8 @@ float: left; text-align: right; padding-top: 0.2em; margin-right: 0.1em; display
 }
 .depot_form div { margin: 0.5em 0;
 }
+
+.locale {
+  float: right;
+  margin: -0.25em 0.1em;
+}

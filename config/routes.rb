@@ -1,25 +1,23 @@
 Rails.application.routes.draw do
   
+  
+    get 'admin' => 'admin#index'
 
-  get 'admin' => 'admin#index'
-
-  devise_for :users,
-             :controllers => {:registrations => "my_devise/registrations"}
-
-  get 'store/index'
-
-  root 'store#index', :as => 'store'
-
-  resources :orders
-  resources :line_items
-  resources :carts
-  resources :products do 
-      get :who_bought, :on => :member
-      collection do
-        get :search
-      end
+    
+  scope '(:locale)' do
+    root 'store#index', :as => 'store'
+    devise_for :users,
+               :controllers => {:registrations => "my_devise/registrations"}
+    resources :orders
+    resources :line_items
+    resources :carts
+    resources :products do 
+        get :who_bought, :on => :member
+        collection do
+          get :search
+        end
+    end
   end
-
 
   
 
