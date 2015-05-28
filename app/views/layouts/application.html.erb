@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag "depot", :media => "all" %> 
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body id="store" > 
 
@@ -39,7 +40,7 @@
 			<% end %>
 		</nav>
 	</div>
-    
+
 
 	<div id="columns">
 		<div id="side">
@@ -48,10 +49,17 @@
 				<div id="cart" >
 				</div>
 			<% end %>
+			<% Product.all.each do |product| %>
+			<div id="side-display<%= product.id %>">
+				
+			</div>
+			<% end %>
 		</div>
 		<div id="main">
 		<%= yield %>
 		</div>
 	</div>
+
+
 </body>
 </html>

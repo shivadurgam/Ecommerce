@@ -20,15 +20,37 @@
 <% @store.each do |product| %>
 	<div class="entry"><br />
 
-		<%= image_tag(product.image_url) %> 
-		<h3><%= product.title %></h3>
+		<p class="image<%= product.id %>"><%= image_tag product.image_url %></p>
+		<p id="showme" style="display:none">you are on me!</p>
+		<h3 class="product-title<%= product.id %>"><%= product.title %></h3>
+		<div id="keka<%= product.id %>" style="display:none">
 		<%= sanitize(product.description) %> 
+		</div>
 		<div class="price_line">
 				<span class="price"><%= number_to_currency(product.price) %></span> 
-				<div id="add_to_cart"><%= button_to t('.add_html'), line_items_path(:product_id => product), remote: true%>
+				<div id="add_to_cart"><%= button_to t('.add_html'), line_items_path(:product_id => product), remote: true %>
 				</div>
 		</div>
+		
+
+
+		<script>
+		$(function(){
+		    $(".image<%= product.id %>").on({
+		    mouseenter: function(){
+		        $("#keka<%= product.id %>").show();
+		    }, 
+		    mouseleave: function(){
+		    	$("#keka<%= product.id %>").hide();
+		    }, 
+		    click: function(){
+		        $("#keka<%= product.id %>").css("background-color", "yellow");
+		    } 
+		});
+		});
+		</script>
 
 	</div> <br />
 <% end %>
 <%= will_paginate %>
+
